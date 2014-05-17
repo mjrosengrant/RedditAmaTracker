@@ -1,0 +1,23 @@
+<!doctype html>
+<html ng-app="RedditApp">
+    <head>
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/OptionController.js"></script>
+    </head>
+    <body>
+        <h1>Welcome to the Reddit AMA Tracker!</h1>
+        <div id="options" ng-controller="OptionController" >
+            <h3>Select an Option</h3>
+            Selection: <b>{{selection}}</b>
+            <ul ng-model = "selection">
+                <li><input type="button" ng-click="selection='View Upcoming AMAs'" value='View Upcoming AMAs'></li>
+                <li><input type="button" ng-click="selection='Search for past AMAs'"value='Search Past AMAs'></li>
+                <li><input type="button" ng-click="selection='View Saved AMAs'"value='View Saved AMAs'></li>
+                <li><a href="http://www.reddit.com/r/iama" target="_blank">
+                    <input type="button" ng-click="selection='Go to Reddit AMA homepage'" value="/r/iama"></a></li>
+            </ul>
+        </div>
+
+    </body>
+</html>
