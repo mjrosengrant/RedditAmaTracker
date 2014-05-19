@@ -1,0 +1,70 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <script>
+        
+            function searchName(searchTerms)
+            {
+                document.write("Method Running<br/>");
+                
+                //Creates URL formatted to search reddit api
+                //http://www.reddit.com/r/IAmA/search?q=barack+obama&restrict_sr=on
+                var xmlHttp = null;
+                var baseurl = 'http://www.reddit.com/r/IamA/search.json?q=';
+                
+                //When placed in the url this limits search terms to specific subreddit
+                var restrict_search = '&restrict_sr=on';
+                //Sorts results by relevance
+                var sortByRelevance='&sort=relevance';
+                
+                //Removes leading and trailing spaces and replaces spaces in SearchTerm with + signs
+                searchTerms = searchTerms.trim();
+                
+                //Removes multiple spaces between words
+                searchTerms = searchTerms.replace(/ +(?= )/g,'');
+                searchTerms = searchTerms.split(' ').join('+');
+
+                document.write("Check searchTerm = " + searchTerms + '<br/>');
+                
+                var theUrl = baseurl+searchTerms+sortByRelevance + restrict_search;
+                //theUrl = 'http://www.reddit.com/search.json?q=ferrari';
+                
+                document.write('Check theUrl = ' + theUrl +'<br/>');
+                
+                xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("GET", theUrl, false);
+                document.write("xmlhttp.open sucessfully opened<br/>");
+                
+                xmlHttp.send(null);
+                
+                var results = xmlHttp.response;
+ 
+                document.write('Check xmlHttp.response = ' + results + '<br/>');
+
+                return xmlHttp.response;
+            }
+            
+            function httpGet(theUrl){
+                var xmlHttp = null;
+                xmlHttp = new XMLHttpRequest();
+                xmlHttp.open("GET", theUrl, false);
+                xmlHttp.send(null);
+                
+                return xmlHttp.responseText;
+            }
+            
+            function helloWorld(){
+                return "HelloWorld!!!"
+            }
+            
+        </script>
+        
+        <div id="output">
+            <h3>AMA JSON information</h3>
+            <script>document.write(searchName('  Barack  Obama  '));</script>
+            <script>document.write(httpGet('http://www.reddit.com/r/iama.json')</script>
+        </div>
+    </body>
+</html>
