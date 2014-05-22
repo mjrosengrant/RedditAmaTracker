@@ -35,7 +35,7 @@ myApp.controller('RedditController', ['$scope', function($scope){
             var title = obj.data.children[i].data.title;
             var url = obj.data.children[i].data.url;
             var link = "<a href=\"" + url + "\" target=\"_blank\">" + title + "</a>";
-            node.innerHTML += link + "<br/>";
+            node.innerHTML += link + "<br><br>";
 
         }
         return list;
