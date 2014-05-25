@@ -1,0 +1,16 @@
+#form{
+    width: 100%;
+    margain: auto;
+    background-color: "red";
+}
+
+h1{
+    color: red;
+}
+
+a:link{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
