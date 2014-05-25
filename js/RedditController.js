@@ -28,20 +28,20 @@ myApp.controller('RedditController', ['$scope', function($scope){
         var obj = JSON.parse($scope.searchAmas());
         var list='';
         var node = document.getElementById("output");
-        node.innerHTML="";
-        resultsCount = obj.data.children.length + "Related AMAs";
+        node.innerHTML="<dl>";
+        document.getElementById('resultsCountDiv').innerHTML = obj.data.children.length + " Related AMAs";
         
         for(var i =0;i<obj.data.children.length;i++){
             var title = obj.data.children[i].data.title;
             var url = obj.data.children[i].data.url;
-            var link = "<a href=\"" + url + "\" target=\"_blank\">" + title + "</a>";
-            node.innerHTML += link + "<br><br>";
+            
+            
+            var ama = "<dt><strong><a href=\"" + url + "\" target=\"_blank\">" + title + "</a></dt>" +
+                "<dd><a href='Responses.html' target='_blank'>View Answers</a></dd>"
 
+            node.innerHTML += ama + "<br><br>";
         }
-        return list;
+        node.innerHTML+="</ol>"
     }
-    
-    
-    
     
 }]);
