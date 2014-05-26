@@ -2,8 +2,10 @@ myApp.controller('RedditController', ['$scope', function($scope){
     $scope.resultsCount= '';
     $scope.searchTerms='';
     $scope.state = '';
+    $scope.searchResults;//JSON object that holds search results
     
     $scope.searchAmas = function(){
+        //Example URL: http://www.reddit.com/r/IAmA/comments/1ri1y9/i_am_richard_dawkins_scientist_researcher_author/
         
         var keywords = $scope.searchTerms;
         $scope.searchTerms = '';
@@ -21,27 +23,11 @@ myApp.controller('RedditController', ['$scope', function($scope){
         xmlHttp.open("GET", theUrl, false);
         
         xmlHttp.send(null);
-        return xmlHttp.response;
+        return xmlHttp.responseText;
     }
     
-    $scope.printLinks = function(){
-        var obj = JSON.parse($scope.searchAmas());
-        var list='';
-        var node = document.getElementById("output");
-        node.innerHTML="<dl>";
-        document.getElementById('resultsCountDiv').innerHTML = obj.data.children.length + " Related AMAs";
-        
-        for(var i =0;i<obj.data.children.length;i++){
-            var title = obj.data.children[i].data.title;
-            var url = obj.data.children[i].data.url;
-            
-            
-            var ama = "<dt><strong><a href=\"" + url + "\" target=\"_blank\">" + title + "</a></dt>" +
-                "<dd><a href='Responses.html' target='_blank'>View Answers</a></dd>"
-
-            node.innerHTML += ama + "<br><br>";
-        }
-        node.innerHTML+="</ol>"
+    $scope.setSearchResults = function (){
+        $scope.searchResults = JSON.parse($scope.searchAmas());
     }
     
 }]);
