@@ -16,8 +16,10 @@
         </div>
         <div id="resultsCountDiv">{{resultsCount}} {{state}}</div>
         <div id="output" >
-            <ol ng-repeat="children in searchResults.data.children">
-            <a href="{{searchResults.data.children[$index].data.url}}">{{searchResults.data.children[$index].data.title}}</a>
+            <ol>
+                <li ng-repeat="children in searchResults.data.children">
+                    <a href="{{searchResults.data.children[$index].data.url}}">{{searchResults.data.children[$index].data.title}}</a><br/>
+                </li>
             </ol>
         </div>
     </body>
