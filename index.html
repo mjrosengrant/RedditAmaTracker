@@ -4,21 +4,22 @@
         <script type="text/javascript" src="js/app.js"></script>
         <script type="text/javascript" src="js/RedditController.js"></script>
         <link rel="stylesheet" type="text/css" href="mystyle.css">
-
     </head>
     <body ng-controller = "RedditController">
+    {{state}}
         <h1>Welcome to the Reddit AMA Tracker!</h1>
         <div id="form">
             <form ng-submit="setSearchResults();">
                 <input type='text' name='input' ng-model="searchTerms" />
                 <input type='submit' value='Search Past AMAs'/>
-           </form>
+            </form>
         </div>
-        <div id="resultsCountDiv">{{resultsCount}} {{state}}</div>
         <div id="output" >
             <ol>
                 <li ng-repeat="children in searchResults.data.children">
-                    <a href="{{searchResults.data.children[$index].data.url}}">{{searchResults.data.children[$index].data.title}}</a><br/>
+                    <a href="{{searchResults.data.children[$index].data.url}}" target="_blank">
+                        {{searchQueryLinkText($index)}}
+                    </a>
                 </li>
             </ol>
         </div>
